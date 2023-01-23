@@ -1,0 +1,29 @@
+# le weather
+#[weather]
+#command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo "天気予報:"
+#interval=1800
+
+# le memory
+[memory]
+command=free -m | grep "Mem:" | awk '{print "メモリ: " $3 " / " $2}'
+interval=45
+
+# le temperature
+[temperature]
+command=~/.config/tempscript.sh | xargs echo
+interval=60
+
+# le battery
+[battery]
+command=cat /sys/class/power_supply/BAT0/capacity | sed 's/$/%/' | xargs echo "電池:"
+interval=60
+
+# le week
+#[week]
+#command=curl https://vecka.nu | grep "week = " | awk '{print $3}' | sed "s/;//" | xargs echo "週:"
+#interval=3000
+
+# le clock
+[time]
+command=date +%a-%d-%b-%T | sed "s#-# #g" | xargs echo "時:"
+interval=5

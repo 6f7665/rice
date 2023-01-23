@@ -1,0 +1,14 @@
+# le weather
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo "天気予報:"
+interval=1800
+
+# le battery
+[battery]
+command=cat /sys/class/power_supply/BAT0/capacity | sed 's/$/%/' | xargs echo "バッテリー:"
+interval=60
+
+# le clock
+[time]
+command=date +%T | xargs echo "時間:"
+interval=5
